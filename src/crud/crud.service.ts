@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Usuario } from '../data_base/usuarios.schema';
-import { Ingrediente } from 'src/data_base/ingredientes.schema';
-import { Receta } from 'src/data_base/recetas.schema';
+import { Ingrediente } from '../data_base/ingredientes.schema';
+import { Receta } from '../data_base/recetas.schema';
 
 @Injectable()
 export class CrudService {

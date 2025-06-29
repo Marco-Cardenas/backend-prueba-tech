@@ -69,6 +69,16 @@ export class CrudService {
     return recipe;
   }
 
+  async getSavedRecipes(userID) {
+    const user = await this.userModel.findById(userID);
+    var recetas = user?.guardados;
+    var s = [];
+    recetas?.forEach(async (id) => {
+      const g: any = await this.recipeModel.findById(id);
+    });
+    return [];
+  }
+
   async insertRecipe(newReceta) {
     const newRecipe = await this.recipeModel.create(newReceta);
     return await newRecipe.save();

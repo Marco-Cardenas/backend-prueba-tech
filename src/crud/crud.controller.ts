@@ -106,6 +106,30 @@ export class CrudController {
     });
   }
 
+  @Get('recetas/user/:id')
+  async getRecipes(@Res() respuesta, @Param('id') userID) {
+    const recetas = await this.crudService.getRecipes({_id: userID});
+    if(recetas == null) {
+      return respuesta.status(HttpStatus.OK).json({ status: false, data: "No hay recetas que mostrar" });
+    }
+    return respuesta.status(HttpStatus.OK).json({
+      status: true,
+      data: recetas
+    });
+  }
+
+  @Get('recetas/saved/:id')
+  async getSavedRecipes(@Res() respuesta, @Param('id') userID) {
+    const recetas = await this.crudService.getSavedRecipes(userID);
+    if(recetas == null) {
+      return respuesta.status(HttpStatus.OK).json({ status: false, data: "No hay recetas que mostrar" });
+    }
+    return respuesta.status(HttpStatus.OK).json({
+      status: true,
+      data: recetas
+    });
+  }
+
   @Post('recetas/:id')
   async createRecipe(@Res() respuesta, @Body() recetaNueva, @Param('id') userID) {
     const newRecipe = await this.crudService.insertRecipe({...recetaNueva, id_creador: userID});
